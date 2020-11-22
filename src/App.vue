@@ -1,18 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <banner />
+  <hex-input />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Banner from './components/Banner'
+import HexInput from './components/HexInput'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HexInput,
+    Banner
   }
 }
 </script>
+
+<style>
+  @import './../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+</style>
+
 
 <style>
 #app {
@@ -20,7 +27,34 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: var(--color-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+} 
+
+body {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+:root {
+  --color-primary: #C08497;
+  --color-secondary: #F7AF9D;
+  --color-tertiary: #F7E3AF;
+  --color-clear: #F3EEC3;
+  --color-dark: #B0D0D3;
+  --color-white: #f8f5ef;
+
+  background: var(--color-white);
 }
 </style>
