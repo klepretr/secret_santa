@@ -19,13 +19,16 @@ import HexViewer from "./HexViewer"
 import MadeWith from "./MadeWith"
 import XXH from "xxhashjs"
 
+let previous_hexhash
+
 export default {
   name: 'HexInput',
   data() {
     return {
       dataProvided: false,
       content: "",
-      hash: XXH.h32(0x00)
+      hash: XXH.h32(0x00),
+      timer: null
     }
   },
   computed: {
@@ -34,10 +37,18 @@ export default {
   methods: {
     onFocus() {
       this.dataProvided = true
+      this.timer = setInterval(() => {
+        if(previous_hexhash !== this.hexhash) {
+          document.title = "hc | #" + this.hexhash
+          previous_hexhash = this.hexhash
+        }
+      }, 2000)
     },
     onFocusOut() {
       if(!this.content.trim()) {
         this.dataProvided = false
+        clearInterval(this.timer)
+        document.title = "hexcolor"
       }
     },
   },
