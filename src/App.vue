@@ -1,17 +1,20 @@
 <template>
   <banner />
   <hex-input />
+  <bottom />
 </template>
 
 <script>
 import Banner from './components/Banner'
 import HexInput from './components/HexInput'
+import Bottom from './components/Bottom'
 
 export default {
   name: 'App',
   components: {
     HexInput,
-    Banner
+    Banner,
+    Bottom
   }
 }
 </script>

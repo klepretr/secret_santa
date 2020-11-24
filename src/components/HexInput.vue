@@ -7,16 +7,12 @@
       <hex-viewer :hexhash="hexhash" v-bind:class="{ visible: dataProvided }" />
       <input placeholder="Enter or Paste a text here..." v-model="content" v-on:focus="onFocus" v-on:focusout="onFocusOut" v-bind:class="{ input_focus: dataProvided }" autocomplete="off" autofocus="off" type="text" class="input" />
     </div>
-    <footer>
-      <p>No data leaves your browser. <br>All saved data is stored in the memory of your browser.<br><br></p>
-      <made-with author="Kévin Leprêtre" link="https://github.com/klepretr"></made-with>
-    </footer>
   </div>
 </template>
 
 <script>
 import HexViewer from "./HexViewer"
-import MadeWith from "./MadeWith"
+
 import XXH from "xxhashjs"
 
 let previous_hexhash
@@ -53,8 +49,7 @@ export default {
     },
   },
   components: {
-    HexViewer,
-    MadeWith
+    HexViewer
   }
 }
 </script>
@@ -143,17 +138,6 @@ a:hover {
 
 .input:hover {
   box-shadow: 0px 0px 15px 0px var(--color-primary);
-}
-
-footer {
-  position: absolute;
-  bottom: 0px;
-}
-
-@media (max-height: 600px) { 
-  footer {
-    visibility: hidden;
-  }
 }
 
 </style>
