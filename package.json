@@ -13,8 +13,7 @@
     "core-js": "^3.6.5",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
-    "vue": "^3.0.0",
-    "xxhashjs": "^0.2.2"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

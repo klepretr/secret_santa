@@ -1,11 +1,9 @@
 <template>
-  <banner />
   <hex-input />
   <bottom />
 </template>
 
 <script>
-import Banner from './components/Banner'
 import HexInput from './components/HexInput'
 import Bottom from './components/Bottom'
 
@@ -13,7 +11,6 @@ export default {
   name: 'App',
   components: {
     HexInput,
-    Banner,
     Bottom
   }
 }
@@ -30,7 +27,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-dark);
 }
 
 html {
@@ -51,13 +48,13 @@ body {
 }
 
 :root {
-  --color-primary: #C08497;
-  --color-secondary: #F7AF9D;
-  --color-tertiary: #F7E3AF;
-  --color-clear: #F3EEC3;
-  --color-dark: #B0D0D3;
-  --color-white: #f8f5ef;
+  --color-primary: #1fae28;
+  --color-secondary: #d82056;
+  --color-tertiary: #fa7c3c;
+  --color-clear: #f0f3f7;
+  --color-dark: #1e1e1e;
+  --color-white: #ffffff;
 
-  background: var(--color-white);
+  background: var(--color-clear);
 }
 </style>

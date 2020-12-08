@@ -1,21 +1,20 @@
 <template>
   <div class="input_outer">
-    <h3>A quick text comparison tool</h3>
-    <p>HexColor use a hash function to generate the color associated with the text entered in the input.</p>
+    <img class="santa_logo" src="secret_santa.svg" />
+    <h3>Secret Santa generator</h3>
+    <p>Add particitants, generate and share links</p>
     <div class="input_background">
-      <a class="input_add"><i class="fas fa-2x fa-plus-circle"></i></a>
-      <hex-viewer :hexhash="hexhash" v-bind:class="{ visible: dataProvided }" />
-      <input placeholder="Enter or Paste a text here..." v-model="content" v-on:focus="onFocus" v-on:focusout="onFocusOut" v-bind:class="{ input_focus: dataProvided }" autocomplete="off" autofocus="off" type="text" class="input" />
+      <a v-on:click="onClickAdd" class="input_add"><i class="fas fa-2x fa-plus-circle"></i></a>
+      <input placeholder="Add a participant..." v-model="content" v-on:focus="onFocus" v-on:focusout="onFocusOut" v-bind:class="{ input_focus: dataProvided }" autocomplete="off" autofocus="off" type="text" class="input" />
+      <hex-list :names="names" />
     </div>
   </div>
 </template>
 
 <script>
-import HexViewer from "./HexViewer"
+import HexList from "./HexList"
 
-import XXH from "xxhashjs"
-
-let previous_hexhash
+let index = 0
 
 export default {
   name: 'HexInput',
@@ -23,33 +22,22 @@ export default {
     return {
       dataProvided: false,
       content: "",
-      hash: XXH.h32(0x00),
-      timer: null
+      names: {}
     }
-  },
-  computed: {
-    hexhash: function() { return this.content.trim() ? this.hash.update(this.content).digest().toString(16).slice(0, -2) : "FFFFFF" }
   },
   methods: {
     onFocus() {
       this.dataProvided = true
-      this.timer = setInterval(() => {
-        if(previous_hexhash !== this.hexhash) {
-          document.title = "hc | #" + this.hexhash
-          previous_hexhash = this.hexhash
-        }
-      }, 2000)
     },
     onFocusOut() {
-      if(!this.content.trim()) {
-        this.dataProvided = false
-        clearInterval(this.timer)
-        document.title = "hexcolor"
-      }
     },
+    onClickAdd() {
+      this.names[index++] = this.content
+      this.content = ""
+    }
   },
   components: {
-    HexViewer
+    HexList
   }
 }
 </script>
@@ -58,7 +46,7 @@ export default {
 h3 {
   margin: 40px 0 0;
   font-size: 30px;
-  font-weight: lighter;
+  font-weight: bold;
 }
 ul {
   list-style-type: none;
@@ -109,6 +97,10 @@ a:hover {
   position: relative;
 }
 
+i {
+  color: var(--color-primary); 
+}
+
 .input {
   width: 100%;
   height: 2.5em;
@@ -117,7 +109,7 @@ a:hover {
   width: -moz-available;
   width: -webkit-fill-available;
   width: stretch;
-  background-color: var(--color-dark);
+  background-color: var(--color-white);
   border: none;
   transition: 0.5s;
   caret-color: var(--color-primary);
@@ -138,6 +130,11 @@ a:hover {
 
 .input:hover {
   box-shadow: 0px 0px 15px 0px var(--color-primary);
+}
+
+.santa_logo {
+  height: 128px;
+  width: 128px;
 }
 
 </style>

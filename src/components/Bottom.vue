@@ -28,7 +28,7 @@ export default {
 }
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0px;
 }
 
